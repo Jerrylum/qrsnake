@@ -4,8 +4,9 @@ var math = Math;
 var dqsa = query => document.querySelectorAll(query);
 var rand16 = () => math.floor(math.random() * 16);
 var setBackground = (x, y, color) => dqsa(`div grid[loc="${x}-${y}"]`)[0].style.backgroundColor = color;
-var setBtnEvent = (idx, tag, code) => allBtns[idx].addEventListener(tag, ()=>{dir=dirs[code]}, false);
+var setBtnEvent = (idx, tag, code) => allBtns[idx].addEventListener(tag, ()=>{setDir(code)}, false);
 var setBtnClick = (idx, code) => setBtnEvent(idx, 'mousedown', code) || setBtnEvent(idx, 'touchstart', code); // Don't optimize
+var setDir = (code) => {if ( (!dir[0] != !dirs[code][0] || ('' + dir == '0,0') )){dir=dirs[code];} };
 
 // init variable and calculate size
 
@@ -35,7 +36,7 @@ cells.forEach(x => x.style.width = x.style.height = cellSize + 'px');
 
 // event listener
 
-onkeydown = e => dir = dirs[e.keyCode] || dir;
+onkeydown = e => setDir(e.keyCode) || dir;
 
 setBtnClick(0, 38);
 setBtnClick(1, 37);
