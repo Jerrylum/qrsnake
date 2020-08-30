@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+    </head>
+<body>
+    <div></div>
+    <pad>
+        <k></k>
+        <p>U</p>
+        <k></k>
+        <p>L</p>
+        <k></k>
+        <p>R</p>
+        <k></k>
+        <p>D</p>
+    </pad>
+    <style>
+        div {
+            margin: 35px auto 0;
+        }
+        pad {
+            display: flex;
+            flex-wrap: wrap;
+            width: 210px;
+            margin: 20px auto;
+            touch-action: manipulation;
+        }
+        pad *{
+            display: flex;
+            flex: 0 0 33%;
+            user-select: none;
+            margin: 0;
+        }
+        p {
+            justify-content: center;
+            align-items: center;
+            background-color: grey;
+            color: white; /* Don't optimize */
+            line-height: 70px;
+            font-family: sans-serif;
+            border-radius: 50%;
+        }
+        grid {
+            border: 1px solid gray;
+            float: left;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        let fileref = document.createElement('script');
+        fileref.setAttribute('src', 'app.js');
+
+        document.body.appendChild(fileref);
+    </script>
+</body>
+</html>
