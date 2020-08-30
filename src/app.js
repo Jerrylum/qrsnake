@@ -6,7 +6,7 @@ var rand16 = () => math.floor(math.random() * 16);
 var setBackground = (x, y, color) => dqsa(`div grid[loc="${x}-${y}"]`)[0].style.backgroundColor = color;
 var setBtnEvent = (idx, tag, code) => allBtns[idx].addEventListener(tag, ()=>{setDir(code)}, false);
 var setBtnClick = (idx, code) => setBtnEvent(idx, 'mousedown', code) || setBtnEvent(idx, 'touchstart', code); // Don't optimize
-var setDir = (code) => {if ( (!dir[0] != !dirs[code][0] || ('' + dir == '0,0') )){dir=dirs[code];} };
+var setDir = (code) => {if ( (!dir[0] != !dirs[code][0] || ('' + dir == '0,0') ) && !next){next = 1;dir=dirs[code];} };
 
 // init variable and calculate size
 
@@ -21,6 +21,7 @@ var dirs  = {
     40: [0,1]
 }; // up, left, right, down
 var snake = [[8,8]], apple = [4,4], dir = [0,0]; // d for dir
+var next = 0;
 
 // create grid and config box size
 
@@ -44,6 +45,7 @@ setBtnClick(2, 39);
 setBtnClick(3, 40);
 
 setInterval(() => {
+    next = 0;
     snake.unshift([ snake[0][0] + dir[0] + 16 & 15 ,
                     snake[0][1] + dir[1] + 16 & 15 ]);
     if('' + snake[0] == apple)
