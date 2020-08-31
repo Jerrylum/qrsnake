@@ -43,6 +43,11 @@ const QRCode = require('qrcode');
     console.log('\nUrl Result:', urlResult.length, 'chars');
     console.log('------------START------------' + urlResult + '------------END------------');
 
+    fs.writeFile('./dist/output.txt', urlResult, function (error) {
+        if (error) return console.log(error);
+        console.log('\nGenerated URL output');
+    });
+
     QRCode.toFile('./dist/qrcode.png', urlResult, function (error) {
         if (error) console.error(error)
         console.log('\nGenerated QR Code');
